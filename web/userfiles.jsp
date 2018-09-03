@@ -21,12 +21,13 @@
 </head>
 <body>
 <div>
-    <form><button class="back" formaction="ParentFolder">&larr;</button></form>
+    <form><button class="back" formaction="ParentFolder">&larr;Back</button></form>
     <div style="display: inline-list-item">
         <a href="signup.jsp">Registration</a>
         <a href="index.html">Log In</a>
     </div>
-    <div>    <c:out value="${request.getParameter('openFolderName')}"></c:out>
+    <div>
+        <c:out value="${request.getParameter('openFolderName')}"></c:out>
     </div>
     <button class="buttonNewFolder" value="New Folder" onclick="newFolder()">
         <p>New Folder</p>

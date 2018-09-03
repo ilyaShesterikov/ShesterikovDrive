@@ -33,7 +33,7 @@ public class SignIn extends HttpServlet {
             }
             HttpSession newSession = request.getSession(true);
             newSession.setAttribute("user", username);
-            newSession.setAttribute("currentDirectory","C:\\Users\\shest\\IdeaProjects\\ShesterikovDrive\\resources\\" + username+ "\\");
+            newSession.setAttribute("currentDirectory","\\ShesterikovDriveFiles\\" + username+ "\\");
 
             response.sendRedirect("UserFiles");
         }

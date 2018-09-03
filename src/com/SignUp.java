@@ -38,6 +38,17 @@ public class SignUp extends HttpServlet {
                 rd.forward(request, response);
             } else {
                 db.addNewUser(username, hashedPassword, email);
+                File f = new File("\\resources\\" + username);
+                f.mkdirs();
+                HttpSession oldSession = request.getSession(false);
+                if (oldSession != null) {
+                    oldSession.invalidate();
+                }
+                HttpSession newSession = request.getSession(true);
+                newSession.setAttribute("user", username);
+                newSession.setAttribute("currentDirectory","\\ShesterikovDriveFiles\\" + username+ "\\");
+
+                response.sendRedirect("UserFiles");
             }
         } else{
             request.setAttribute("errorMessage", "Provided username already in use.");
@@ -45,17 +56,7 @@ public class SignUp extends HttpServlet {
             rd.forward(request, response);
         }
 
-        File f = new File("C:\\Users\\shest\\IdeaProjects\\ShesterikovDrive\\resources\\" + username);
-        f.mkdirs();
-        HttpSession oldSession = request.getSession(false);
-        if (oldSession != null) {
-            oldSession.invalidate();
-        }
-        HttpSession newSession = request.getSession(true);
-        newSession.setAttribute("user", username);
-        newSession.setAttribute("currentDirectory","C:\\Users\\shest\\IdeaProjects\\ShesterikovDrive\\resources\\" + username+ "\\");
 
-        response.sendRedirect("UserFiles");
     }
 
     /**
